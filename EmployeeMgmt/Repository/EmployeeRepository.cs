@@ -16,17 +16,12 @@ namespace EmployeeMgmt.Repository
         public bool AddEmployee(Employee employee)
         {
             bool userfound;
-
-
             if (edb.Employees.Contains(employee))
-    public class EmployeeRepository
             {
                 userfound = true;
                // throw new exceptions.userfoundException("Username found.....Please enter different UserName");
                return false;
-
             }
-
             else
             {
                 edb.Employees.Add(employee);
@@ -76,7 +71,15 @@ namespace EmployeeMgmt.Repository
 
         public bool UpdateEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            var emp=edb.Employees.SingleOrDefault(e=>e.Email== employee.Email);
+            if(edb.Employees.Contains(employee))
+            {
+                edb.Employees.Update(employee);
+                edb.SaveChanges();
+                return true;
+            }
+            return false;
+            //throw new NotImplementedException();
         }
     }
 }

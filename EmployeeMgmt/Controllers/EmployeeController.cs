@@ -15,7 +15,6 @@ namespace EmployeeMgmt.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            
             return View();
         }
         [HttpPost]
@@ -26,6 +25,15 @@ namespace EmployeeMgmt.Controllers
             else
                 return ViewBag.Msg("Employee Exist");
         }
-
+        public IActionResult Edit(int id)
+        {
+            var emp=rdb.
+            return View();
+        }
+        public IActionResult Update(Employee employee)
+        {
+            var emp=rdb.UpdateEmployee(employee);
+            return View(emp);
+        }
     }
 }
