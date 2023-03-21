@@ -40,6 +40,23 @@ namespace EmployeeMgmt.Repository
         {
             throw new NotImplementedException();
         }
+        //public bool DeleteEmployee(string Email)
+        //{
+        //    Employee deluser = new Employee();
+
+        //    deluser = edb.Employees.Find(e => e.Email == e);
+        //    if (deluser != null)
+        //    {
+
+        //        userlist.Remove(deluser);
+        //        Console.WriteLine("user deleted");
+        //        return true;
+
+        //    }
+        //    Console.WriteLine("User not found");
+        //    throw new NotImplementedException();
+        //    throw new NotImplementedException();
+        //}
 
         public List<Employee> GetAll()
         {
