@@ -26,37 +26,32 @@ namespace EmployeeMgmt.Repository
             {
                 edb.Employees.Add(employee);
                 edb.SaveChanges();
-                Console.WriteLine("user added successfully");
                 return true;
             }
             throw new NotImplementedException();
         }
-
-        public bool DeleteEmployee()
+        public bool DeleteEmployee(string EmpEmail)
         {
-            throw new NotImplementedException();
+            Employee deluser = new Employee();
+
+            deluser = edb.Employees.FirstOrDefault(e => e.Email == EmpEmail);
+            if (deluser != null)
+            {
+
+                edb.Remove(deluser);
+                edb.SaveChanges();
+                return true;
+
+            }       
+            throw new NotImplementedException();   
         }
-        //public bool DeleteEmployee(string Email)
-        //{
-        //    Employee deluser = new Employee();
-
-        //    deluser = edb.Employees.Find(e => e.Email == e);
-        //    if (deluser != null)
-        //    {
-
-        //        userlist.Remove(deluser);
-        //        Console.WriteLine("user deleted");
-        //        return true;
-
-        //    }
-        //    Console.WriteLine("User not found");
-        //    throw new NotImplementedException();
-        //    throw new NotImplementedException();
-        //}
 
         public List<Employee> GetAll()
         {
-            throw new NotImplementedException();
+            List<Employee> list = new List<Employee>();
+            list=edb.Employees.ToList();
+            return list;
+        
         }
 
         public Employee GetEmployee(int id)
