@@ -1,4 +1,5 @@
 using EmployeeMgmt.Models;
+using EmployeeMgmt.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeMgmt
@@ -11,6 +12,7 @@ namespace EmployeeMgmt
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IEmployeeRepos, EmployeeRepository>();
             builder.Services.AddDbContext<EmployeeMgtContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("Dbcon")));
 
