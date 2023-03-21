@@ -1,5 +1,6 @@
 using EmployeeMgmt.Models;
 using EmployeeMgmt.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 
 namespace EmployeeMgmt
@@ -16,6 +17,13 @@ namespace EmployeeMgmt
             builder.Services.AddDbContext<EmployeeMgtContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("Dbcon")));
 
+            builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie(options => {
+                    options.Cookie.Name = "MyCookie";
+                    options.LoginPath = "/Employee/Login";
+                    options.SlidingExpiration = false;
+                });
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -31,6 +39,7 @@ namespace EmployeeMgmt
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(

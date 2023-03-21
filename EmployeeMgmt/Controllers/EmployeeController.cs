@@ -1,6 +1,9 @@
 ﻿using EmployeeMgmt.Models;
 using EmployeeMgmt.Repository;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace EmployeeMgmt.Controllers
 {
@@ -21,29 +24,41 @@ namespace EmployeeMgmt.Controllers
         public IActionResult Create(Employee entity)
         {
             if (rdb.AddEmployee(entity))
-                return View();
+                return RedirectToAction("View");
             else
                 return ViewBag.Msg("Employee Exist");
         }
-        [HttpGet]
-        //public IActionResult Delete(Employee entity) 
-        //{
+        public IActionResult Delete(int id)
+        {
+            if (rdb.DeleteEmployee(id))
+            {
+                return View();
+            }
+            else
+            {
+                return ViewBag.Msg("Employee Not deleted");
+            }
 
-        //}
-        public IActionResult View()
+        }
+        public IActionResult ViewAll()
         {
             List<Employee> employees = rdb.GetAll();
-            return View(employees); 
+            return View(employees);
         }
         public IActionResult Edit(int id)
         {
-            var emp=rdb.
+            //var emp=rdb.
             return View();
         }
         public IActionResult Update(Employee employee)
         {
             var emp=rdb.UpdateEmployee(employee);
             return View(emp);
+        }
+        public IActionResult EmpListByDept(int id)
+        {
+            List<Employee> employeelist = rdb.ListbyDept(id);
+            return View(employeelist);
         }
     }
 }

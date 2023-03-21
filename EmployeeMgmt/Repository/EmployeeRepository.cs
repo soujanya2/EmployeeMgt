@@ -1,4 +1,5 @@
 ﻿using EmployeeMgmt.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.ComponentModel.Design;
 
@@ -15,12 +16,12 @@ namespace EmployeeMgmt.Repository
 
         public bool AddEmployee(Employee employee)
         {
-            bool userfound;
+            //bool userfound;
             if (edb.Employees.Contains(employee))
             {
-                userfound = true;
+                //userfound = true;
                // throw new exceptions.userfoundException("Username found.....Please enter different UserName");
-               return false;
+                return false;
             }
             else
             {
@@ -30,37 +31,39 @@ namespace EmployeeMgmt.Repository
             }
             throw new NotImplementedException();
         }
-        public bool DeleteEmployee(string EmpEmail)
-        {
-            Employee deluser = new Employee();
-
-            deluser = edb.Employees.FirstOrDefault(e => e.Email == EmpEmail);
+        public bool DeleteEmployee(int id)
+        { 
+            var deluser = edb.Employees.SingleOrDefault(e => e.EmpId == id);
             if (deluser != null)
             {
-
                 edb.Remove(deluser);
                 edb.SaveChanges();
                 return true;
-
-            }       
-            throw new NotImplementedException();   
+            }
+            return false;
+            //throw new NotImplementedException();   
         }
 
         public List<Employee> GetAll()
         {
             List<Employee> list = new List<Employee>();
-            list=edb.Employees.ToList();
+            list = edb.Employees.ToList();
             return list;
-        
         }
-
-        public Employee GetEmployee(int id)
+        public Employee GetEmployee(string email)
         {
             throw new NotImplementedException();
         }
 
         public List<Employee> ListbyDept(int id)
         {
+            List<Employee> employees= new List<Employee>();
+            var emps=edb.Employees.Where(x=>x.DeptId==id);
+            foreach(var item in emps)
+            {
+                employees.Add(item);
+            }
+            return employees;
             throw new NotImplementedException();
         }
 
