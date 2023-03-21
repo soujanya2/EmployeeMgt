@@ -26,6 +26,15 @@ namespace EmployeeMgmt.Controllers
             else
                 return ViewBag.Msg("Employee Exist");
         }
+        [HttpGet]
+        //public IActionResult Delete(Employee entity) 
+        //{
 
+        //}
+        public IActionResult View()
+        {
+            List<Employee> employees = rdb.GetAll();
+            return View(employees); 
+        }
     }
 }
