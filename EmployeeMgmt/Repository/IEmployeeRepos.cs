@@ -8,9 +8,9 @@ namespace EmployeeMgmt.Repository
 
         bool AddEmployee(Employee employee);
 
-        bool DeleteEmployee(string Email);
+        bool DeleteEmployee(int Empid);
 
-        Employee GetEmployee(int id);
+        Employee GetEmployee(int Empid);
 
         bool UpdateEmployee(Employee employee);
 

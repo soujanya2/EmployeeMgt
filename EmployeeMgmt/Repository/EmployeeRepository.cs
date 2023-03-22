@@ -15,30 +15,28 @@ namespace EmployeeMgmt.Repository
 
         public bool AddEmployee(Employee employee)
         {
-            bool userfound;
+            Employee userfound;
+            userfound=edb.Employees.FirstOrDefault(e => e.Email == employee.Email);
 
-
-            if (edb.Employees.Contains(employee))
+            if (userfound!=null)
             {
-                userfound = true;
-               // throw new exceptions.userfoundException("Username found.....Please enter different UserName");
-               return false;
+                
+             return false;
 
             }
-
             else
             {
                 edb.Employees.Add(employee);
                 edb.SaveChanges();
                 return true;
             }
-            throw new NotImplementedException();
+            
         }
-        public bool DeleteEmployee(string EmpEmail)
+        public bool DeleteEmployee(int Emid)
         {
             Employee deluser = new Employee();
 
-            deluser = edb.Employees.FirstOrDefault(e => e.Email == EmpEmail);
+            deluser = edb.Employees.FirstOrDefault(e => e.EmpId == Emid);
             if (deluser != null)
             {
 
@@ -46,20 +44,28 @@ namespace EmployeeMgmt.Repository
                 edb.SaveChanges();
                 return true;
 
-            }       
-            throw new NotImplementedException();   
+            }
+            return false;   
         }
 
         public List<Employee> GetAll()
         {
-            List<Employee> list = new List<Employee>();
-            list=edb.Employees.ToList();
-            return list;
-        
+            
+            return edb.Employees.ToList();
+
+            //throw new NotImplementedException();
+
         }
 
         public Employee GetEmployee(int id)
         {
+            
+            Employee EmpFound =new Employee();
+            EmpFound = edb.Employees.FirstOrDefault(e => e.EmpId == id);
+            if (EmpFound != null)
+            {
+                return EmpFound;
+            }
             throw new NotImplementedException();
         }
 

@@ -21,20 +21,37 @@ namespace EmployeeMgmt.Controllers
         [HttpPost]
         public IActionResult Create(Employee entity)
         {
-            if (rdb.AddEmployee(entity))
+            bool i=rdb.AddEmployee(entity);
+            if (i==true)
                 return View();
             else
                 return ViewBag.Msg("Employee Exist");
         }
         [HttpGet]
-        //public IActionResult Delete(Employee entity) 
-        //{
-
-        //}
-        public IActionResult View()
+        public IActionResult Delete(int id)
         {
-            List<Employee> employees = rdb.GetAll();
-            return View(employees); 
+            bool d = rdb.DeleteEmployee(id);
+            if (d == true)
+                return View();
+            return View();
+        }
+        public IActionResult ViewAll()
+        {
+        List<Employee> employees = rdb.GetAll();
+        return View(employees);
+        }
+       
+        public IActionResult Search()
+        {
+            return View();
+           // return View(rdb.GetEmployee(id));
+        }
+   
+        public IActionResult Details(int employeeid)
+        {
+            Employee Found = rdb.GetEmployee(employeeid);
+            return View(Found);
+            
         }
     }
 }
