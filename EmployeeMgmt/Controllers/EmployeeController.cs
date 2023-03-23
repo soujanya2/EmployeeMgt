@@ -29,27 +29,26 @@ namespace EmployeeMgmt.Controllers
         public IActionResult Create(Employee entity)
         {
             if (rdb.AddEmployee(entity))
-                return RedirectToAction("View");
-            bool i=rdb.AddEmployee(entity);
-            if (i==true)
-                return View();
+                return RedirectToAction("ViewAll");
             else
                 return ViewBag.Msg("Employee Exist");
         }
-        [Authorize("Admin")]
+        [Authorize(Roles ="Admin")]
         public IActionResult Delete(string id)
         {
             if (rdb.DeleteEmployee(id))
             {
-                return View();
+                return RedirectToAction("ViewAll");
             }
             return ViewBag.Msg("Employee Exist");
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult ViewAll()
         {
         List<Employee> employees = rdb.GetAll();
         return View(employees);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Edit(string id)
         {
             Employee ee = new Employee();
@@ -58,6 +57,7 @@ namespace EmployeeMgmt.Controllers
             //var emp=rdb.
             return View(emp);
         }
+        [Authorize(Roles ="Employee")]
         public IActionResult EmpEdit(string id)     //create view dont forget
         {
             Employee ee = new Employee();
@@ -69,25 +69,29 @@ namespace EmployeeMgmt.Controllers
         public IActionResult Update(Employee employee)
         {
             var emp=rdb.UpdateEmployee(employee);
-            return View(emp);
+            return RedirectToAction("ViewAll");
         }
-        public IActionResult EmpListByDept(int id)
+        [Authorize(Roles = "Admin")]
+        public IActionResult SearchDept()
+        {
+            return View();
+        }
+        public IActionResult EmpListByDept(Department id)
         {
             List<Employee> employeelist = rdb.ListbyDept(id);
             return View(employeelist);
         }
-       
+        [Authorize(Roles ="Admin,Employee")]
         public IActionResult Search()
         {
             return View();
            // return View(rdb.GetEmployee(id));
         }
-   
+        [Authorize(Roles = "Admin,Employee")]
         public IActionResult Details(Employee id)
         {
             Employee Found = rdb.GetEmployee(id);
-            return View(Found);
-            
+            return View(Found);  
         }
     }
 }

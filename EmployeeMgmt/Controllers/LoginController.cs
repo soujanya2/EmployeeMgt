@@ -16,9 +16,8 @@ namespace EmployeeMgmt.Controllers
         {
             repodb = _rdb;
         }
-        public IActionResult Index()
+        public IActionResult Welcome()
         {
-            ViewBag.Msg = "User Doesnt exist";
             return View();
         }
         public IActionResult Login(string returnurl)
@@ -36,6 +35,7 @@ namespace EmployeeMgmt.Controllers
                 var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name,res.Email),
+                        new Claim(ClaimTypes.Role, res.Role)
                     };
                 var claimsidentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
                 ClaimsPrincipal principal = new ClaimsPrincipal(claimsidentity);

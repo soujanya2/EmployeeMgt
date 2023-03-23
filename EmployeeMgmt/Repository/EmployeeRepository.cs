@@ -19,17 +19,9 @@ namespace EmployeeMgmt.Repository
         {
             Employee userfound;
             userfound=edb.Employees.FirstOrDefault(e => e.Email == employee.Email);
-
-          
- 
             if (edb.Employees.Contains(employee))
             {
-                
-             return false;
-
-                //userfound = true;
-               // throw new exceptions.userfoundException("Username found.....Please enter different UserName");
-                
+             return false; 
             }
             else
             {
@@ -39,7 +31,6 @@ namespace EmployeeMgmt.Repository
             }
             
         }
-     
         public bool DeleteEmployee(string id)
         { 
             var deluser = edb.Employees.SingleOrDefault(e => e.Email == id);
@@ -56,14 +47,7 @@ namespace EmployeeMgmt.Repository
 
         public List<Employee> GetAll()
         {
-            
             return edb.Employees.ToList();
-
-            //throw new NotImplementedException();
-
-            List<Employee> list = new List<Employee>();
-            list = edb.Employees.ToList();
-            return list;
         }
         public Employee GetEmployee(Employee id)
         {
@@ -74,16 +58,18 @@ namespace EmployeeMgmt.Repository
             //throw new NotImplementedException();
         }
 
-        public List<Employee> ListbyDept(int id)
+        public List<Employee> ListbyDept(Department id)
         {
             List<Employee> employees= new List<Employee>();
-            var emps=edb.Employees.Where(x=>x.DeptId==id);
-            foreach(var item in emps)
+            Department dd = new Department();
+            dd = edb.Departments.FirstOrDefault(e => e.Deptname == id.Deptname);
+            var emps = edb.Employees.Where(x => x.DeptId == dd.Deptid);
+            foreach (var item in emps)
             {
                 employees.Add(item);
             }
             return employees;
-          
+
         }
 
         public bool UpdateEmployee(Employee employee)
@@ -91,7 +77,12 @@ namespace EmployeeMgmt.Repository
             var emp=edb.Employees.SingleOrDefault(e=>e.Email== employee.Email);
             if(edb.Employees.Contains(employee))
             {
-                edb.Employees.Update(employee);
+                emp.Age = employee.Age;
+                emp.Role=employee.Role;
+                emp.Salary=employee.Salary;
+                emp.Phoneno=employee.Phoneno;
+                emp.Manager=employee.Manager;
+                emp.DeptId=employee.DeptId;
                 edb.SaveChanges();
                 return true;
             }

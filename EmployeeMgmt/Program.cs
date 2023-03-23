@@ -20,7 +20,7 @@ namespace EmployeeMgmt
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => {
                     options.Cookie.Name = "MyCookie";
-                    options.LoginPath = "/Employee/Login";
+                    options.LoginPath = "/Login/Login";
                     options.SlidingExpiration = false;
                 });
 

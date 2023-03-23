@@ -18,7 +18,7 @@
         <p style="font-size:40px!important;text-align:center!important">Login</p>
             <div class="row">
             <div style="margin:auto!important" class="col-md-4">
-                    <form  asp-action="Login">
+                <form asp-action="Login" asp-route-returnurl="@ViewBag.ReturnUrl">
                         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                         <div class="form-group">
                             <label asp-for="Email" class="control-label"></label>

@@ -14,7 +14,7 @@ namespace EmployeeMgmt.Repository
 
         bool UpdateEmployee(Employee employee);
 
-        List<Employee> ListbyDept(int id);
+        List<Employee> ListbyDept(Department id);
 
 
     }
