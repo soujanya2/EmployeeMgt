@@ -32,6 +32,7 @@ namespace EmployeeMgmt.Controllers
             var res = emplist.SingleOrDefault(x => x.Email.Equals(emp.Email));
             if (res != null && res.Password == emp.Password)
             {
+                HttpContext.Session.SetString("Email", emp.Email);
                 var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name,res.Email),
@@ -58,6 +59,11 @@ namespace EmployeeMgmt.Controllers
         {
             await HttpContext.SignOutAsync();
             return RedirectToAction("Login");
+        }
+        public IActionResult Details()
+        {
+            Employee Found = repodb.GetEmp(HttpContext.Session.GetString("Email"));
+            return View(Found);
         }
     }
 }

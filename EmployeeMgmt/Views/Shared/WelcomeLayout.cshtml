@@ -8,9 +8,9 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/EmployeeMgmt.styles.css" asp-append-version="true" />
 </head>
-<body style="top: -20px;left: -20px;right: -40px;bottom: -40px;width: auto;height: auto;background-image: url(http://ginva.com/wp-content/uploads/2012/07/city-skyline-wallpapers-008.jpg);background-size: cover;">
+<body style="top: -20px;left: -20px;right: -40px;bottom: -40px;width: auto;height:100%;overflow:hidden;background-image: url(https://wallpaperaccess.com/full/656665.jpg);background-size: cover;">
     <header>
-        <nav style="background-color:rgba(1,1,240,0.3)!important;padding:10px!important;" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav style="background-color:rgba(86, 169, 232, 0.5)!important;padding:10px!important;" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 @*                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EmployeeMgmt</a>
                 *@                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
@@ -29,9 +29,9 @@
                     <div>
                         @if (User.Identity.IsAuthenticated)
                         {
-                            <div class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
-                            </div>
+                                <div class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Logout">Logout</a>
+                                </div>
                         }
                         else
                         {

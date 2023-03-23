@@ -22,6 +22,7 @@ namespace EmployeeMgmt.Controllers
         [Authorize(Roles ="Admin")]
         public IActionResult Create()
         {
+            ViewData["role"] = new SelectList("Employee","Admin");
             ViewData["deptid"] = new SelectList(db.Departments, "Deptid", "Deptname");
             return View();
         }
