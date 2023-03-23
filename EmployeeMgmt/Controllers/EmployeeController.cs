@@ -44,18 +44,7 @@ namespace EmployeeMgmt.Controllers
 
         }
         public IActionResult ViewAll()
-        [HttpGet]
-        public IActionResult Delete(int id)
         {
-            bool d = rdb.DeleteEmployee(id);
-            if (d == true)
-                return View();
-            return View();
-        }
-        public IActionResult ViewAll()
-        {
-            List<Employee> employees = rdb.GetAll();
-            return View(employees);
         List<Employee> employees = rdb.GetAll();
         return View(employees);
         }
@@ -81,9 +70,9 @@ namespace EmployeeMgmt.Controllers
            // return View(rdb.GetEmployee(id));
         }
    
-        public IActionResult Details(int employeeid)
+        public IActionResult Details(Employee id)
         {
-            Employee Found = rdb.GetEmployee(employeeid);
+            Employee Found = rdb.GetEmployee(id);
             return View(Found);
             
         }
