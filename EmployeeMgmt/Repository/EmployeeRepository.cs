@@ -1,4 +1,5 @@
 ﻿using EmployeeMgmt.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.ComponentModel.Design;
 
@@ -19,10 +20,15 @@ namespace EmployeeMgmt.Repository
             userfound=edb.Employees.FirstOrDefault(e => e.Email == employee.Email);
 
             if (userfound!=null)
+            //bool userfound;
+            if (edb.Employees.Contains(employee))
             {
                 
              return false;
 
+                //userfound = true;
+               // throw new exceptions.userfoundException("Username found.....Please enter different UserName");
+                return false;
             }
             else
             {
@@ -37,15 +43,20 @@ namespace EmployeeMgmt.Repository
             Employee deluser = new Employee();
 
             deluser = edb.Employees.FirstOrDefault(e => e.EmpId == Emid);
+        public bool DeleteEmployee(int id)
+        { 
+            var deluser = edb.Employees.SingleOrDefault(e => e.EmpId == id);
             if (deluser != null)
             {
-
                 edb.Remove(deluser);
                 edb.SaveChanges();
                 return true;
 
             }
             return false;   
+            }
+            return false;
+            //throw new NotImplementedException();   
         }
 
         public List<Employee> GetAll()
@@ -55,9 +66,11 @@ namespace EmployeeMgmt.Repository
 
             //throw new NotImplementedException();
 
+            List<Employee> list = new List<Employee>();
+            list = edb.Employees.ToList();
+            return list;
         }
-
-        public Employee GetEmployee(int id)
+        public Employee GetEmployee(string email)
         {
             
             Employee EmpFound =new Employee();
@@ -71,12 +84,27 @@ namespace EmployeeMgmt.Repository
 
         public List<Employee> ListbyDept(int id)
         {
+            List<Employee> employees= new List<Employee>();
+            var emps=edb.Employees.Where(x=>x.DeptId==id);
+            foreach(var item in emps)
+            {
+                employees.Add(item);
+            }
+            return employees;
             throw new NotImplementedException();
         }
 
         public bool UpdateEmployee(Employee employee)
         {
-            throw new NotImplementedException();
+            var emp=edb.Employees.SingleOrDefault(e=>e.Email== employee.Email);
+            if(edb.Employees.Contains(employee))
+            {
+                edb.Employees.Update(employee);
+                edb.SaveChanges();
+                return true;
+            }
+            return false;
+            //throw new NotImplementedException();
         }
     }
 }
