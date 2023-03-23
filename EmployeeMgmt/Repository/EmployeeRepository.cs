@@ -1,5 +1,7 @@
 ﻿using EmployeeMgmt.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.ComponentModel.Design;
 
@@ -13,7 +15,6 @@ namespace EmployeeMgmt.Repository
         {
             edb = _edb;
         }
-
         public bool AddEmployee(Employee employee)
         {
             //bool userfound;
@@ -31,9 +32,9 @@ namespace EmployeeMgmt.Repository
             }
             throw new NotImplementedException();
         }
-        public bool DeleteEmployee(int id)
+        public bool DeleteEmployee(string id)
         { 
-            var deluser = edb.Employees.SingleOrDefault(e => e.EmpId == id);
+            var deluser = edb.Employees.SingleOrDefault(e => e.Email == id);
             if (deluser != null)
             {
                 edb.Remove(deluser);
@@ -50,9 +51,10 @@ namespace EmployeeMgmt.Repository
             list = edb.Employees.ToList();
             return list;
         }
-        public Employee GetEmployee(string email)
+        public Employee GetEmployee(Employee id)
         {
-            throw new NotImplementedException();
+            var emp=edb.Employees.SingleOrDefault(x=>x.Email== id.Email);
+            return emp;
         }
 
         public List<Employee> ListbyDept(int id)

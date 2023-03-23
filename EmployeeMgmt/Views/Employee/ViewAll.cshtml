@@ -9,6 +9,11 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
 <table class="table">
     <thead>
         <tr>
@@ -97,8 +102,8 @@
                 @Html.DisplayFor(modelItem => item.Dept.Deptid)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.Email">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Email">Details</a> |
+                <a asp-action="Edit" asp-route-id="@item.Email">Edit</a> 
+                <a asp-action="Details" asp-route-id="@item.Email">Details</a> 
                 <a asp-action="Delete" asp-route-id="@item.Email">Delete</a>
             </td>
         </tr>

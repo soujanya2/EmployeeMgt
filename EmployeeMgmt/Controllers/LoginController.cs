@@ -49,10 +49,15 @@ namespace EmployeeMgmt.Controllers
                 if (HttpContext.Request.Query["ReturnUrl"].ToString() != "")
                     return Redirect(HttpContext.Request.Query["ReturnUrl"]);
                 else
-                    return RedirectToAction("Employee/ViewAll");
+                    return RedirectToAction("ViewAll","Employee");
             }
             //}
-            return RedirectToAction("Index");
+            return RedirectToAction("Create","Employee");
+        }
+        public async Task<IActionResult> Logout()
+        {
+            await HttpContext.SignOutAsync();
+            return RedirectToAction("Login");
         }
     }
 }
