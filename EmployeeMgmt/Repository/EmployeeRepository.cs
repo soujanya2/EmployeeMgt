@@ -40,7 +40,7 @@ namespace EmployeeMgmt.Repository
             
         }
      
-        public bool DeleteEmployee(int id)
+        public bool DeleteEmployee(string id)
         { 
             var deluser = edb.Employees.SingleOrDefault(e => e.Email == id);
             if (deluser != null)
