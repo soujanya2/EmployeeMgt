@@ -133,5 +133,7 @@ public partial class EmployeeMgtContext : DbContext
         OnModelCreatingPartial(modelBuilder);
     }
 
+    
+
     partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
 }

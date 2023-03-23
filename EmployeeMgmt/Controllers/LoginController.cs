@@ -11,10 +11,12 @@ namespace EmployeeMgmt.Controllers
     public class LoginController : Controller
     {
         private IEmployeeRepos repodb;
+        private EmployeeMgtContext db;
 
-        public LoginController(IEmployeeRepos _rdb)
+        public LoginController(IEmployeeRepos _rdb,EmployeeMgtContext _db)
         {
             repodb = _rdb;
+            db = _db;
         }
         public IActionResult Welcome()
         {
@@ -32,6 +34,7 @@ namespace EmployeeMgmt.Controllers
             var res = emplist.SingleOrDefault(x => x.Email.Equals(emp.Email));
             if (res != null && res.Password == emp.Password)
             {
+                HttpContext.Session.SetString("Email", emp.Email);
                 var claims = new List<Claim>
                     {
                         new Claim(ClaimTypes.Name,res.Email),
@@ -49,7 +52,14 @@ namespace EmployeeMgmt.Controllers
                 if (HttpContext.Request.Query["ReturnUrl"].ToString() != "")
                     return Redirect(HttpContext.Request.Query["ReturnUrl"]);
                 else
-                    return RedirectToAction("ViewAll","Employee");
+                    if (res.Role == "Admin")
+                {
+                    return RedirectToAction("ViewAll", "Employee");
+                }
+                else
+                {
+                    return RedirectToAction("Details");
+                }
             }
             //}
             return RedirectToAction("Create","Employee");
@@ -59,5 +69,10 @@ namespace EmployeeMgmt.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("Login");
         }
+    public IActionResult Details()
+    {
+        Employee Found = repodb.GetEmployee(HttpContext.Session.GetString("Email"));
+        return View(Found);
     }
+}
 }

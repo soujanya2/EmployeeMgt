@@ -49,11 +49,11 @@ namespace EmployeeMgmt.Repository
         {
             return edb.Employees.ToList();
         }
-        public Employee GetEmployee(Employee id)
+        public Employee GetEmployee(string email)
         {
             
             Employee emp = new Employee();
-            emp=edb.Employees.FirstOrDefault(e => e.Email == id.Email);
+            emp=edb.Employees.FirstOrDefault(e => e.Email == email);
                 return emp;
             //throw new NotImplementedException();
         }

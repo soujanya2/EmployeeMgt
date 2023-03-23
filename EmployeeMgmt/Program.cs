@@ -16,7 +16,9 @@ namespace EmployeeMgmt
             builder.Services.AddScoped<IEmployeeRepos, EmployeeRepository>();
             builder.Services.AddDbContext<EmployeeMgtContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("Dbcon")));
-
+            builder.Services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromMinutes(60);
+            });
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
                 .AddCookie(options => {
                     options.Cookie.Name = "MyCookie";
@@ -40,6 +42,7 @@ namespace EmployeeMgmt
             app.UseRouting();
 
             app.UseAuthentication();
+            app.UseSession();
             app.UseAuthorization();
 
             app.MapControllerRoute(

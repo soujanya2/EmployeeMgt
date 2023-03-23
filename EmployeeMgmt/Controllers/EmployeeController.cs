@@ -51,18 +51,17 @@ namespace EmployeeMgmt.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(string id)
         {
-            Employee ee = new Employee();
-            ee=db.Employees.FirstOrDefault(x=>x.Email.Equals(id));
-            var emp=rdb.GetEmployee(ee);
+         
+            var emp=rdb.GetEmployee(id);
             //var emp=rdb.
             return View(emp);
         }
         [Authorize(Roles ="Employee")]
         public IActionResult EmpEdit(string id)     //create view dont forget
         {
-            Employee ee = new Employee();
-            ee = db.Employees.FirstOrDefault(x => x.Email.Equals(id));
-            var emp = rdb.GetEmployee(ee);
+        
+         
+            var emp = rdb.GetEmployee(id);
             //var emp=rdb.
             return View(emp);
         }
@@ -88,7 +87,7 @@ namespace EmployeeMgmt.Controllers
            // return View(rdb.GetEmployee(id));
         }
         [Authorize(Roles = "Admin,Employee")]
-        public IActionResult Details(Employee id)
+        public IActionResult Details(string id)
         {
             Employee Found = rdb.GetEmployee(id);
             return View(Found);  
