@@ -30,6 +30,9 @@ namespace EmployeeMgmt.Controllers
         {
             if (rdb.AddEmployee(entity))
                 return RedirectToAction("View");
+            bool i=rdb.AddEmployee(entity);
+            if (i==true)
+                return View();
             else
                 return ViewBag.Msg("Employee Exist");
         }
@@ -44,8 +47,8 @@ namespace EmployeeMgmt.Controllers
         }
         public IActionResult ViewAll()
         {
-            List<Employee> employees = rdb.GetAll();
-            return View(employees);
+        List<Employee> employees = rdb.GetAll();
+        return View(employees);
         }
         public IActionResult Edit(string id)
         {
@@ -72,6 +75,19 @@ namespace EmployeeMgmt.Controllers
         {
             List<Employee> employeelist = rdb.ListbyDept(id);
             return View(employeelist);
+        }
+       
+        public IActionResult Search()
+        {
+            return View();
+           // return View(rdb.GetEmployee(id));
+        }
+   
+        public IActionResult Details(Employee id)
+        {
+            Employee Found = rdb.GetEmployee(id);
+            return View(Found);
+            
         }
     }
 }

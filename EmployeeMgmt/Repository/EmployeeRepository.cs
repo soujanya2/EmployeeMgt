@@ -17,12 +17,19 @@ namespace EmployeeMgmt.Repository
         }
         public bool AddEmployee(Employee employee)
         {
-            //bool userfound;
+            Employee userfound;
+            userfound=edb.Employees.FirstOrDefault(e => e.Email == employee.Email);
+
+          
+ 
             if (edb.Employees.Contains(employee))
             {
+                
+             return false;
+
                 //userfound = true;
                // throw new exceptions.userfoundException("Username found.....Please enter different UserName");
-                return false;
+                
             }
             else
             {
@@ -30,9 +37,10 @@ namespace EmployeeMgmt.Repository
                 edb.SaveChanges();
                 return true;
             }
-            throw new NotImplementedException();
+            
         }
-        public bool DeleteEmployee(string id)
+     
+        public bool DeleteEmployee(int id)
         { 
             var deluser = edb.Employees.SingleOrDefault(e => e.Email == id);
             if (deluser != null)
@@ -40,21 +48,30 @@ namespace EmployeeMgmt.Repository
                 edb.Remove(deluser);
                 edb.SaveChanges();
                 return true;
+
             }
-            return false;
+            return false;   
             //throw new NotImplementedException();   
         }
 
         public List<Employee> GetAll()
         {
+            
+            return edb.Employees.ToList();
+
+            //throw new NotImplementedException();
+
             List<Employee> list = new List<Employee>();
             list = edb.Employees.ToList();
             return list;
         }
         public Employee GetEmployee(Employee id)
         {
-            var emp=edb.Employees.SingleOrDefault(x=>x.Email== id.Email);
-            return emp;
+            
+            Employee emp = new Employee();
+            emp=edb.Employees.FirstOrDefault(e => e.Email == id.Email);
+                return emp;
+            //throw new NotImplementedException();
         }
 
         public List<Employee> ListbyDept(int id)
@@ -66,7 +83,7 @@ namespace EmployeeMgmt.Repository
                 employees.Add(item);
             }
             return employees;
-            throw new NotImplementedException();
+          
         }
 
         public bool UpdateEmployee(Employee employee)
@@ -83,3 +100,4 @@ namespace EmployeeMgmt.Repository
         }
     }
 }
+
