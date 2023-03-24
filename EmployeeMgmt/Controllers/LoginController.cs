@@ -61,8 +61,8 @@ namespace EmployeeMgmt.Controllers
                     return RedirectToAction("Details");
                 }
             }
-            //}
-            return RedirectToAction("Create","Employee");
+            ViewBag.Msg="Incorrect Login Credentials";
+            return ViewBag;
         }
         public async Task<IActionResult> Logout()
         {
@@ -73,6 +73,22 @@ namespace EmployeeMgmt.Controllers
         {
             Employee Found = repodb.GetEmp(HttpContext.Session.GetString("Email"));
             return View(Found);
+        }
+        public IActionResult ResetPassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult ResetPassword(Employee emp)
+        {
+            var employee=db.Employees.SingleOrDefault(x=>x.Email==emp.Email);
+            if(employee!=null)
+            {
+                employee.Password = emp.Password;
+                return RedirectToAction("Login");
+            }
+            ViewBag.message = "Invalid Email";
+            return View();
         }
     }
 }

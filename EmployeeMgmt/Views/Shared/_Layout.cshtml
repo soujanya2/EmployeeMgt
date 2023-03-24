@@ -28,6 +28,7 @@
                         </li>
                     </ul>
                     <div style="display:flex">
+                        <div><a class="nav-link text-dark" asp-controller="Login" asp-action="ResetPassword">Forgot Password</a></div>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <div style="display:flex;flex-direction:row">

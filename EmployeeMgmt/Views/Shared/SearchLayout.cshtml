@@ -9,16 +9,16 @@
 
     <link rel="stylesheet" href="~/EmployeeMgmt.styles.css" asp-append-version="true" />
 </head>
-<body style="background-image:url(https://horgangc.com/wp-content/uploads/2020/07/AdobeStock_278089393-1-1536x1024.jpg)!important">
+<body style="height:100%;overflow:hidden;background-image:url(https://th.bing.com/th/id/OIP.bZ-K7lBGaHKmfuFEjal90gAAAA?pid=ImgDet&rs=1)!important;padding:10px!important;top: -20px;left: -20px;right: -40px;bottom: -40px;width: auto;height: auto;background-size: cover;z-index: 0;">
     <header>
-        <nav style="background-color:rgba(86, 169, 232, 0.5)!important;padding:10px!important;" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav style="background-color:rgba(86, 169, 232, 0.5)!important;" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
                 @*                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EmployeeMgmt</a>
                 *@                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                                           aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div style="justify-content:space-between;font-size:17px!important" class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
@@ -27,7 +27,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
-                    <div>
+                    <div style="display:flex">
                         @if (User.Identity.IsAuthenticated)
                         {
                             <div style="display:flex;flex-direction:row">
@@ -45,18 +45,21 @@
                                 <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
                             </div>
                         }
+                        <div>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Details">Profile</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div style="margin-left:40%" class="container">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer style="margin-top:20%" class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - EmployeeMgmt - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>

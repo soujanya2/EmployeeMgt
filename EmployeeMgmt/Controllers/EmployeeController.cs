@@ -53,16 +53,12 @@ namespace EmployeeMgmt.Controllers
         [Authorize(Roles = "Admin")]
         public IActionResult Edit(Employee id)
         {
-         
             var emp=rdb.GetEmployee(id);
-            //var emp=rdb.
             return View(emp);
         }
         [Authorize(Roles ="Employee")]
         public IActionResult EmpEdit(Employee id)     //create view dont forget
         {
-        
-         
             var emp = rdb.GetEmployee(id);
             //var emp=rdb.
             return View(emp);
@@ -77,6 +73,7 @@ namespace EmployeeMgmt.Controllers
         {
             return View();
         }
+        [HttpPost]
         public IActionResult EmpListByDept(Department id)
         {
             List<Employee> employeelist = rdb.ListbyDept(id);

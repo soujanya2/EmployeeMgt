@@ -13,7 +13,9 @@ namespace EmployeeMgmt
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddHttpContextAccessor();
             builder.Services.AddScoped<IEmployeeRepos, EmployeeRepository>();
+            builder.Services.AddScoped<IProjectsRepos,ProjectEmpRepos>();
             builder.Services.AddDbContext<EmployeeMgtContext>(option => option.UseSqlServer(
     builder.Configuration.GetConnectionString("Dbcon")));
             builder.Services.AddSession(options => {
@@ -35,7 +37,7 @@ namespace EmployeeMgmt
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-
+            
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 

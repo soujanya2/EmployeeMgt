@@ -5,25 +5,25 @@
 }
 
 <p style="font-size:40px;font-weight:bold;color:black;align-content:center">Search employee</p>
-<div style="margin-right:20%!important" sty class="row">
+<div style="margin-right:20%!important" class="row">
     <div class="col-md-4">
-        <form asp-action="Details">
+        <form asp-action="EmpListByDept">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             @*<div class="form-group">
             Employee ID
             <input type="text" id="Email" name="Email" class="form-control" />
             </div>*@
             <div class="form-group">
-                <label style="font-color:white" asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
+                <label style="font-color:white" asp-for="DeptId" class="control-label"></label>
+                <input asp-for="DeptId" class="form-control" />
+                <span asp-validation-for="DeptId" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <button  asp-action="Details"  class="btn btn-primary">Search</button>
             </div>
         </form>
     </div>
-</div> 
+</div>
 <div>
     <a asp-action="ViewAll">Back to List</a>
 </div>

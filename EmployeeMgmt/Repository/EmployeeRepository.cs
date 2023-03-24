@@ -53,18 +53,18 @@ namespace EmployeeMgmt.Repository
 
         public Employee GetEmp(string email)
         {
-            Employee ee = new Employee();
-            var emp = edb.Employees.Include(x => x.Dept);
-            ee =emp.FirstOrDefault(e => e.Email == email);
+            //Employee ee = new Employee();
+            //var emp = edb.Employees.Include(x => x.Dept);
+            var ee =edb.Employees.FirstOrDefault(e => e.Email == email);
             return ee;
          //   throw new NotImplementedException();
         }
 
         public Employee GetEmployee(Employee id)
         {
-            
             Employee emp = new Employee();
-            emp=edb.Employees.FirstOrDefault(e => e.Email == id.Email);
+         
+            emp=edb.Employees.FirstOrDefault(e => e.DeptId == id.DeptId);
                 return emp;
             //throw new NotImplementedException();
         }
@@ -74,15 +74,14 @@ namespace EmployeeMgmt.Repository
             List<Employee> employees= new List<Employee>();
             Department dd = new Department();
             dd = edb.Departments.FirstOrDefault(e => e.Deptname == id.Deptname);
-            var emps = edb.Employees.Where(x => x.DeptId == dd.Deptid);
+            var deptemp = edb.Employees.Include(a => a.Dept);
+            var emps =deptemp.Where(x => x.DeptId == dd.Deptid);
             foreach (var item in emps)
             {
                 employees.Add(item);
             }
             return employees;
-
         }
-
         public bool UpdateEmployee(Employee employee)
         {
             var emp=edb.Employees.SingleOrDefault(e=>e.Email== employee.Email);
