@@ -1,98 +1,93 @@
-﻿@model EmployeeMgmt.Models.Employee
-
-@{
-    ViewData["Title"] = "Create";
-}
-
-<h1>Create</h1>
-
-<h4>Employee</h4>
-<hr />
-<div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-            <div class="form-group">
-                <label asp-for="EmpId" class="control-label"></label>
-                <input asp-for="EmpId" class="form-control" />
-                <span asp-validation-for="EmpId" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Firstname" class="control-label"></label>
-                <input asp-for="Firstname" class="form-control" />
-                <span asp-validation-for="Firstname" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Lastname" class="control-label"></label>
-                <input asp-for="Lastname" class="form-control" />
-                <span asp-validation-for="Lastname" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Age" class="control-label"></label>
-                <input asp-for="Age" class="form-control" />
-                <span asp-validation-for="Age" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Gender" class="control-label"></label>
-                <input asp-for="Gender" class="form-control" />
-                <span asp-validation-for="Gender" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Role" class="control-label"></label>
-                <input asp-for="Role" asp-items="ViewBag.role" class="form-control" />
-                <span asp-validation-for="Role" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Password" class="control-label"></label>
-                <input asp-for="Password" class="form-control" />
-                <span asp-validation-for="Password" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Salary" class="control-label"></label>
-                <input asp-for="Salary" class="form-control" />
-                <span asp-validation-for="Salary" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Phoneno" class="control-label"></label>
-                <input asp-for="Phoneno" class="form-control" />
-                <span asp-validation-for="Phoneno" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Address" class="control-label"></label>
-                <input asp-for="Address" class="form-control" />
-                <span asp-validation-for="Address" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Email" class="control-label"></label>
-                <input asp-for="Email" class="form-control" />
-                <span asp-validation-for="Email" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="Manager" class="control-label"></label>
-                <input asp-for="Manager" class="form-control" />
-                <span asp-validation-for="Manager" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DateOfJoining" class="control-label"></label>
-                <input asp-for="DateOfJoining" class="form-control" />
-                <span asp-validation-for="DateOfJoining" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DeptId" class="control-label"></label>
-                <select asp-for="DeptId" class ="form-control" asp-items="ViewBag.deptid"></select>
-            </div>
-            <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-            <p>@ViewBag.Msg</p>
-        </form>
-    </div>
-</div>
-
-<div>
-    <a asp-action="ViewAll">Back to List</a>
-</div>
-
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+﻿
+@model EmployeeMgmt.Models.Employee
+<!DOCTYPE html>
+<!--=== Coding by CodingLab | www.codinglabweb.com === -->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+        <!----======== CSS ======== -->
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="~/css/StyleSheet.css" asp-append-version="true" />
+	<!----===== Iconscout CSS ===== -->
+<link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+         <!--<title>Responsive Regisration Form </title>-->
+</head>
+<body>
+<div class="container">
+<header>Registration</header>
+	<form asp-action="create">
+		<div class="form first">
+					<div class="details personal">
+					<span class="title">Personal Details</span>
+                     <div class="fields">
+					<div class="input-field">
+					<label>First Name</label>
+					<input type="text" asp-for="Firstname" placeholder="Enter your name" required></div>
+                            					 <div class="input-field">
+					<label>Last Name</label>
+					<input type="text" asp-for="Lastname" placeholder="Enter your name" required></div>
+                            					 <div class="input-field">
+					<label>Age</label>
+					<input type="number" asp-for="Age" placeholder="Enter your age" required></div>
+                            					 <div class="input-field">
+					<label>Employee ID</label>
+					<input type="number" asp-for="EmpId" placeholder="Enter Employee Id" required></div>
+                            					 <div class="input-field">
+					<label>Gender</label>
+					<select asp-for="Gender" required>
+					<option disabled selected>Select gender</option>
+					<option>Male</option>
+					<option>Female</option>
+					<option>Others</option>                                 
+					</select>
+					</div>
+                            					 <div class="input-field">
+					<label>Date of Joining</label>
+					<input type="date" asp-for="DateOfJoining" placeholder="Enter Joining date" required></div>
+                            					 <div class="input-field">
+					<label>Email</label>
+					<input type="text" asp-for="Email" placeholder="Enter your email" required>
+					</div>
+                            					 <div class="input-field">
+					<label>Mobile Number</label>
+					<input type="number" asp-for="Phoneno" placeholder="Enter mobile number" required>
+					</div>
+                            					 <div class="input-field">
+					<label>Address</label>
+					<input type="text" asp-for="Address" placeholder="Enter the Address" required>
+					</div>
+					<div class="input-field">
+					<label>Password</label>
+					<input type="text" asp-for="Password" placeholder="Enter the password" required>
+					</div>
+					<div class="input-field">
+					<label>Role</label>
+					<select type="text" asp-for="Role" asp-items="ViewBag.role" placeholder="Enter your role" required></select>
+					</div>
+					<div class="input-field">
+					<label>Department ID </label>
+					<select type="number" asp-for="DeptId" asp-items="ViewBag.deptid"  placeholder="Enter dept Id" required></select>
+					</div>
+					<div class="input-field">
+						<label>Salary  </label>
+						<input type="number" asp-for="Salary" placeholder="Enter Salary" required>
+					</div>                             
+					<div class="input-field">
+							<label>
+								Manager
+							</label>
+							<input type="text" asp-for="Manager" placeholder="Enter Manager" required>
+					</div>                        
+					</div>
+					</div>  
+					<div> 
+						<input type="submit" value="Create" class="btn btn-primary" />
+					</div>
+		</div>
+				@*<button class="nextBtn"><span class="btnText">Next</span><i class="uil uil-navigator"></i></button>*@
+	</form>
+		</div>         <!--<script src="script.js"></script>-->
+</body>
+</html>

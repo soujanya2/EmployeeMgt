@@ -22,7 +22,8 @@ namespace EmployeeMgmt.Controllers
         [Authorize(Roles ="Admin")]
         public IActionResult Create()
         {
-            ViewData["role"] = new SelectList("Employee","Admin");
+            Array array = new[] { "Admin", "Employee" };
+            ViewData["role"] = new SelectList(array);
             ViewData["deptid"] = new SelectList(db.Departments, "Deptid", "Deptname");
             return View();
         }
@@ -50,7 +51,7 @@ namespace EmployeeMgmt.Controllers
         return View(employees);
         }
         [Authorize(Roles = "Admin")]
-        public IActionResult Edit(string id)
+        public IActionResult Edit(Employee id)
         {
          
             var emp=rdb.GetEmployee(id);
@@ -58,7 +59,7 @@ namespace EmployeeMgmt.Controllers
             return View(emp);
         }
         [Authorize(Roles ="Employee")]
-        public IActionResult EmpEdit(string id)     //create view dont forget
+        public IActionResult EmpEdit(Employee id)     //create view dont forget
         {
         
          
@@ -88,7 +89,7 @@ namespace EmployeeMgmt.Controllers
            // return View(rdb.GetEmployee(id));
         }
         [Authorize(Roles = "Admin,Employee")]
-        public IActionResult Details(string id)
+        public IActionResult Details(Employee id)
         {
             Employee Found = rdb.GetEmployee(id);
             return View(Found);  

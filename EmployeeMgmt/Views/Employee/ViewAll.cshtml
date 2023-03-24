@@ -1,112 +1,76 @@
 ﻿@model IEnumerable<EmployeeMgmt.Models.Employee>
-
-@{
-    ViewData["Title"] = "View";
-}
-
-<h1>View</h1>
-
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<style>
-    table, th, td {
-        border: 1px solid black;
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            *{
+                box-sizing:border-box;
+            }
+            body{
+            background-image: url(https://thumbs.dreamstime.com/b/modern-office-interior-13654524.jpg)
+            font-family:Arial, Helvetica, sans-serif;
+            }
+ /* Float four columns side by side */
+        .column{
+            float:left;
+            width:25%;
+            padding:0 10px;
+        }
+ /* Remove extra left and right margins, due to padding */
+        .row{
+            margin:0 -5px;
+        }
+        /* Clear floats after the columns */
+        .row:after
+        {
+            content:"";
+            display:table;
+            clear:both;
+        }
+ /*         Responsive columns*/
+    media screen and (max-width:600px){
+        .column
+        {
+            width:100%;
+            display:block;
+            margin-bottom:20px;
+        }
     }
-</style>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.EmpId)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Firstname)
-            </th>
-
-            <th>
-                @Html.DisplayNameFor(model => model.Lastname)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Age)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Gender)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Role)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Salary)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Phoneno)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Address)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Manager)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.DateOfJoining)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Dept)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.EmpId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Firstname)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Lastname)
-            </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Email)
-                </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Age)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Gender)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Role)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Salary)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Phoneno)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Address)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Manager)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateOfJoining)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Dept.Deptid)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Email">Edit</a> 
-                <a asp-action="Delete" asp-route-id="@item.Email">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+ /* Style the counter cards */
+         .card{
+            box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.2);
+            padding:16px;
+            margin:10px;
+            text-align:center;
+            background-color: #f1f1f1;
+         }
+ </style>
+ </head>
+ <body>
+     <h2>Employee List</h2>
+    <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="Create">Create New Employee</a>
+     <div class="row">
+        @foreach (var i in Model)
+        {
+            <div class="column">
+                <div class="card">
+                    <h1>@Html.DisplayFor(modelItem => i.Firstname)</h1>
+                    <p> @Html.DisplayFor(modelItem => i.Lastname)</p>
+                    <p> @Html.DisplayFor(modelItem => i.Email)</p>
+                    <p> @Html.DisplayFor(modelItem => i.Age)</p>
+                    <p> @Html.DisplayFor(modelItem => i.Gender)</p>
+                    <p> @Html.DisplayFor(modelItem => i.Address)</p>
+                    <p> @Html.DisplayFor(modelItem => i.Phoneno)</p>
+                    <p> @Html.DisplayFor(modelItem => i.Salary)</p>
+                    <p> @Html.DisplayFor(modelItem => i.DateOfJoining)</p>
+                    <p> @Html.DisplayFor(modelItem => i.Manager)</p>
+                    <p> @Html.DisplayFor(modelItem=>i.DeptId)</p>
+                    <a asp-action="Edit" asp-route-id="@i.Email">Edit</a> 
+                    <a asp-action="Delete" asp-route-id="@i.Email">Delete</a>
+                </div>
+            </div>
+        }
+</div>
+</body>
+</html>

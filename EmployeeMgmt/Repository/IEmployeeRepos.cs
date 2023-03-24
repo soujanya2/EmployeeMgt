@@ -10,7 +10,7 @@ namespace EmployeeMgmt.Repository
 
         bool DeleteEmployee(string id);
 
-        Employee GetEmployee(string email);
+        Employee GetEmployee(Employee email);
 
         bool UpdateEmployee(Employee employee);
 

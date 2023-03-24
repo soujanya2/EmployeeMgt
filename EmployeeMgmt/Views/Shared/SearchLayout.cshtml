@@ -6,16 +6,16 @@
     <title>@ViewData["Title"] - EmployeeMgmt</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-   
+
     <link rel="stylesheet" href="~/EmployeeMgmt.styles.css" asp-append-version="true" />
 </head>
-<body>
+<body style="background-image:url(https://horgangc.com/wp-content/uploads/2020/07/AdobeStock_278089393-1-1536x1024.jpg)!important">
     <header>
         <nav style="background-color:rgba(86, 169, 232, 0.5)!important;padding:10px!important;" class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-@*                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EmployeeMgmt</a>
-*@                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                @*                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">EmployeeMgmt</a>
+                *@                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                                          aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div style="justify-content:space-between;font-size:17px!important" class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
@@ -27,7 +27,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
-                    <div style="display:flex">
+                    <div>
                         @if (User.Identity.IsAuthenticated)
                         {
                             <div style="display:flex;flex-direction:row">
@@ -41,13 +41,10 @@
                         }
                         else
                         {
-                                <div class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
-                                </div>
+                            <div class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Login">Login</a>
+                            </div>
                         }
-                        <div>
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Login" asp-action="Details">Profile</a>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -59,11 +56,11 @@
         </main>
     </div>
 
-    @*<footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted">
         <div class="container">
             &copy; 2023 - EmployeeMgmt - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
-    </footer>*@
+    </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

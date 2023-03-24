@@ -47,13 +47,15 @@ namespace EmployeeMgmt.Repository
 
         public List<Employee> GetAll()
         {
-            return edb.Employees.ToList();
+            var emp = edb.Employees.Include(x => x.Dept);
+            return emp.ToList();
         }
 
         public Employee GetEmp(string email)
         {
             Employee ee = new Employee();
-            ee = edb.Employees.FirstOrDefault(e => e.Email == email);
+            var emp = edb.Employees.Include(x => x.Dept);
+            ee =emp.FirstOrDefault(e => e.Email == email);
             return ee;
          //   throw new NotImplementedException();
         }
@@ -62,7 +64,7 @@ namespace EmployeeMgmt.Repository
         {
             
             Employee emp = new Employee();
-            emp=edb.Employees.FirstOrDefault(e => e.Email == email);
+            emp=edb.Employees.FirstOrDefault(e => e.Email == id.Email);
                 return emp;
             //throw new NotImplementedException();
         }
