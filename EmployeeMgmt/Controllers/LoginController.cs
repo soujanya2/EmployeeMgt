@@ -69,10 +69,10 @@ namespace EmployeeMgmt.Controllers
             await HttpContext.SignOutAsync();
             return RedirectToAction("Login");
         }
-    public IActionResult Details()
-    {
-        Employee Found = repodb.GetEmployee(HttpContext.Session.GetString("Email"));
-        return View(Found);
+        public IActionResult Details()
+        {
+            Employee Found = repodb.GetEmp(HttpContext.Session.GetString("Email"));
+            return View(Found);
+        }
     }
-}
 }

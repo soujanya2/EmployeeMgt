@@ -16,6 +16,6 @@ namespace EmployeeMgmt.Repository
 
         List<Employee> ListbyDept(Department id);
 
-
+        Employee GetEmp(string email);
     }
 }
