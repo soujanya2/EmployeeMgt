@@ -12,11 +12,13 @@ namespace EmployeeMgmt.Controllers
     public class ProjectController : Controller
     {
         private IProjectsRepos pdb;
-        private EmployeeProject db;
-        public ProjectController(IProjectsRepos _pdb, EmployeeProject _db)
+        private IEmployeeRepos emprepo;
+        
+        public ProjectController(IProjectsRepos _pdb,IEmployeeRepos employeeRepos)
         {
             pdb = _pdb;
-            db = _db;
+            emprepo = employeeRepos;
+           
         }
         public IActionResult ViewEmpProj()
         {
@@ -25,8 +27,8 @@ namespace EmployeeMgmt.Controllers
         }
         public ActionResult AddEmployeetoProj()
         {
-            ViewData["emp"] = new SelectList((System.Collections.IEnumerable)db.EmpemailNavigation, "empemail", "Firstname");
-            ViewData["proj"] = new SelectList((System.Collections.IEnumerable)db.Proj, "proj_id", "projectname");
+            ViewBag.Empemail = new SelectList(emprepo.GetAll(), "Email", "Firstname");
+            ViewBag.ProjId = new SelectList(pdb.ViewAllProjects(), "Projectid", "Projectname");
             return View();
         }
         [HttpPost]

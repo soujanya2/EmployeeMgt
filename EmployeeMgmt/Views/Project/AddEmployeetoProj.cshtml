@@ -1,0 +1,38 @@
+﻿@model EmployeeMgmt.Models.EmployeeProject
+
+@{
+    ViewData["Title"] = "AddEmployeetoProj";
+}
+
+<h1>AddEmployeetoProj</h1>
+
+<h4>EmployeeProject</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddEmployeetoProj">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Epid" class="control-label"></label>
+                <input asp-for="Epid" class="form-control" />
+                <span asp-validation-for="Epid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Empemail" class="control-label"></label>
+                <select asp-for="Empemail" class ="form-control" asp-items="ViewBag.Empemail"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProjId" class="control-label"></label>
+                <select asp-for="ProjId" class ="form-control" asp-items="ViewBag.ProjId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+

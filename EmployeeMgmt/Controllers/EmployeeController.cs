@@ -54,6 +54,7 @@ namespace EmployeeMgmt.Controllers
         public IActionResult Edit(Employee id)
         {
             var emp=rdb.GetEmployee(id);
+            ViewData["dept"] = new SelectList(db.Departments, "Deptid", "Deptname");
             return View(emp);
         }
         [Authorize(Roles ="Employee")]

@@ -1,10 +1,10 @@
 ﻿@model EmployeeMgmt.Models.Employee
 @{
     ViewData["Title"] = "Login";
-} <hr/>
+} 
 @*<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />*@
 <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 <div style="background-image:url(https://imageio.forbes.com/specials-images/dam/imageserve/1160172155/960x0.jpg?format=jpg&width=960" class="body"></div>
 <div class="grad"></div>
 <div class="header"><div>Employee<span></div></div>
-<br> <div  class="login"><form asp-action="Login"><input type="text" asp-for="Email" placeholder="username" name="Email"><br><input type="password" asp-for="Password" placeholder="password" name="password"><br><input style="margin-top:10px" type="submit" value="Login" class="btn btn-primary" /><p style="color:red;margin-top:25px">@ViewBag.Msg</p></form></div><div style="margin-left:47%;margin-top:13%"></div>
+<br> <div  class="login"><form asp-action="Login"><input type="text" asp-for="Email" placeholder="username" name="Email"><br><input type="password" asp-for="Password" placeholder="password" name="password"><br><input style="margin-top:10px" type="submit" value="Login" class="btn btn-primary" /><p style="color:red;margin-top:25px">@ViewBag.Msg</p><div><a asp-action="ResetPassword">Forgot Password</a></div></form></div><div style="margin-left:47%;margin-top:13%"></div>

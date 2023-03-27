@@ -8,6 +8,7 @@ namespace EmployeeMgmt.Repository
         List<Employee> GetEmployee(EmployeeProject id);
         List<EmployeeProject> ViewAll();
         bool UpdateProject(EmployeeProject project);
+         List<Project> ViewAllProjects();
     }
 }
 

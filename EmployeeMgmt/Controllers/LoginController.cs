@@ -61,8 +61,7 @@ namespace EmployeeMgmt.Controllers
                     return RedirectToAction("Details");
                 }
             }
-            ViewBag.Msg="Incorrect Login Credentials";
-            return ViewBag;
+            return RedirectToAction("ResetPassword");
         }
         public async Task<IActionResult> Logout()
         {
@@ -85,6 +84,7 @@ namespace EmployeeMgmt.Controllers
             if(employee!=null)
             {
                 employee.Password = emp.Password;
+                db.SaveChanges();
                 return RedirectToAction("Login");
             }
             ViewBag.message = "Invalid Email";

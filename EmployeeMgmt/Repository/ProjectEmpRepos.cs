@@ -36,7 +36,10 @@ namespace EmployeeMgmt.Repository
             return proj.ToList();
 
         }
-
+        public List<Project> ViewAllProjects()
+        { 
+        return edb.Projects.ToList();
+        }
         public bool DeleteProject(int id)
 
         {
